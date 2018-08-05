@@ -1,0 +1,244 @@
+@import '../../assets/style/utils';
+.skillTree {
+  display: flex;
+  padding: 40px;
+  justify-content: space-between;
+}
+
+header {
+  width: 300px;
+  height: 688px;
+  position: relative;
+  h1 {
+    @extend %h1;
+    color: $secendary;
+    margin-bottom: 24px;
+  }
+  .badge {
+    height: 27px;
+    width: 148px;
+    line-height: 27px;
+    background: $primary;
+    color: $primary-deep;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .rank-level {
+    @extend %h2;
+    color: $light;
+    display: inline-block;
+    .rank-level-title {
+      border-bottom: 4px solid $primary;
+    }
+    .rank-level-sub {
+      border-bottom: 4px solid $primary;
+    }
+  }
+  .img-area {
+    position: relative;
+    height: 255px;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .rank-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 146px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      position: absolute;
+      bottom: 0;
+    }
+    .rank-text-info {
+      line-height: 24px;
+      padding: 0 24px;
+    }
+  }
+}
+
+%arrow-line {
+  content: '';
+  width: 38px;
+  height: 60%;
+  background-color: $primary-darker;
+  position: absolute;
+  bottom: 0%;
+  transform: translate(-50%, 15%);
+  left: 50%;
+  z-index: -1;
+}
+
+.main {
+  width: 300px;
+  height: 688px;
+  display: flex;
+  /* 階層區 */
+  .skill-planet {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100px;
+    height: 100%;
+    position: relative;
+    margin-right: 12px;
+    .arrow {
+      &::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        position: absolute;
+        left: 50%;
+        border-width: 20px 35px;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+        border-color: $primary-darker transparent transparent;
+      }
+    }
+  }
+  .skill-planet-img {
+    position: relative;
+  }
+  .skill-planet-1h {
+    height: 100px;
+    &:after {
+      @extend %arrow-line;
+    }
+  }
+  .skill-planet-2h {
+    height: 200px;
+    &:after {
+      @extend %arrow-line;
+    }
+  }
+  /* 項目區 */
+  .skill-items {
+    width: 100%;
+    .skill-item-row {
+      display: inline-flex;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      align-content: space-between;
+    }
+    .skill-item-row-mb {
+      margin-bottom: 16px;
+    }
+    .skill-item-row-2 {
+      .skill-item {
+        &:nth-of-type(3) {
+          margin-right: 4px;
+        }
+      }
+    }
+    .skill-item {
+      width: 60px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      cursor: pointer;
+      &:nth-of-type(3) {
+        margin-right: 0px;
+      }
+      &:last-child {
+        margin-right: 0px;
+      }
+      >.skill-item-img {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba($light, $alpha: 0.1);
+      }
+      >span {
+        margin-top: 4px;
+      }
+      &.active {
+        >.skill-item-img {
+          border: 2px solid $secendary;
+        }
+      }
+      &.disabled {
+        opacity: 0.5;
+      }
+      &.complete {
+        color: $primary;
+      }
+      &.complete-all {
+        color: $primary;
+        overflow: hidden;
+        position: relative;
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 25px;
+          height: 25px;
+          background: $primary-dark;
+          right: 0;
+          top: 0;
+          transform: translate(50%, -50%) rotate(45deg);
+        }
+      }
+    }
+  }
+}
+
+.skill-info {
+  border: 2px solid $secendary;
+  background: $primary-dark;
+  display: flex;
+  flex-direction: column;
+  .skill-title {
+    width: 100%;
+    height: 306px;
+    background: $primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .skill-title-name {
+      @extend %h2;
+      text-align: center;
+      line-height: 48px;
+    }
+  }
+  .skill-list {
+    width: 100%;
+    height: calc( 100% - 306px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 52px;
+    .skill-list-name {
+      @extend %h3;
+      line-height: 36px;
+      margin-bottom: 11px;
+    }
+    .skill-list-btn {
+      height: 35px;
+      border: 2px solid $light;
+      margin-top: 5px;
+      line-height: 34px;
+      @extend %h3;
+      cursor: pointer;
+      transition: all .3s;
+      &:hover {
+        border: none;
+        background: $secendary;
+        border: 2px solid transparent;
+        color: $light;
+      }
+    }
+  }
+}
